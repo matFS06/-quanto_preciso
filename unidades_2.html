@@ -29,7 +29,7 @@
   <div style="background-color: whitesmoke; text-align:center">
     <br>
     <label for="unidade_c">Quantidade Licitada:</label>
-    <input type="number" id="unidade_c"/>
+    <input type="number" id="quantidade_li"/>
     <label for="operation">Unidade de medida da licitação:</label>
     <select id="operation" onchange="operationChanged()">
         <option value="Tonelada">Tonelada</option>
@@ -43,7 +43,7 @@
         <input type="number" id="unidade_c"/>
 
     <label for="operation">Unidade de medida disponível:</label>
-        <select id="operation" onchange="operationChanged()">
+        <select id="operation2" onchange="operationChanged2()">
         <option value="Tonelada">Tonelada</option>
         <option value="Litro">Litro</option>
         <option value="Grama">Grama</option>
@@ -55,6 +55,7 @@
     <p><button onclick="calculate()">Converter</button></p>
     <h2>Resultado:</h2>
     <p id="result"></p>
+    <p id="result2"></p>
   </div>
   <script>
     function operationChanged() {
@@ -62,17 +63,30 @@
         var resultElement = document.getElementById("result");
     
         if (operation === "Tonelada") {
-        resultElement.innerHTML = "Unidade selecionada: Tonelada";
+            resultElement.innerHTML = "Unidade de medida da licitação selecionada: Tonelada";
         } else if (operation === "Litro") {
-        resultElement.innerHTML = "Unidade selecionada: Litro";
+            resultElement.innerHTML = "Unidade de medida da licitação selecionada: Litro";
         } else if (operation === "Quilograma") {
-        resultElement.innerHTML = "Unidade selecionada: Quilograma";
+            resultElement.innerHTML = "Unidade de medida da licitação selecionada: Quilograma";
         }
     }
     
+    function operationChanged2() {
+        var operation2 = document.getElementById("operation2").value;
+        var resultElement = document.getElementById("result2");
+    
+        if (operation2 === "Tonelada") {
+            resultElement.innerHTML = "Unidade disponível selecionada: Tonelada";
+        } else if (operation2 === "Litro") {
+            resultElement.innerHTML = "Unidade disponível selecionada: Litro";
+        } else if (operation2 === "Quilograma") {
+            resultElement.innerHTML = "Unidade disponível selecionada: Quilograma";
+        }
+    }
+
     function calculate() {
         var operation = document.getElementById("operation").value;
-        var number1 = parseFloat(document.getElementById("unidade_c").value);
+        var number1 = parseFloat(document.getElementById("quantidade_li").value);
         var resultElement = document.getElementById("result");
     
         if (operation === "Tonelada") {
