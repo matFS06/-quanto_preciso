@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quanto preciso?</title>
+  <script src="script.js"></script>
+  <style>
+    h1 {
+      color: goldenrod; 
+      text-align: center;
+      font-family: Georgia;
+    }
+    body {
+        background-color: aquamarine;
+    }
+    button {
+        background-color: greenyellow;
+        border-radius: 10px;
+        width: 90px;
+        height: 50px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Quanto Preciso?</h1>
+
+  <div style="background-color: whitesmoke; text-align:center">
+    <br>
+    <label for="unidade_c">Quantidade Licitada:</label>
+    <input type="number" id="unidade_c"/>
+    <label for="operation">Unidade de medida da licitação:</label>
+    <select id="operation" onchange="operationChanged()">
+        <option value="Tonelada">Tonelada</option>
+        <option value="Litro">Litro</option>
+        <option value="Grama">Grama</option>
+        <option value="Miligrama">Miligrama</option>
+        <option value="Mililitro">Mililitro</option>
+        <option value="Quilograma">Quilograma</option>
+    </select>
+    <p></p><label for="unidade_c">Apresentação do Produto:</label>
+        <input type="number" id="unidade_c"/>
+
+    <label for="operation">Unidade de medida disponível:</label>
+        <select id="operation" onchange="operationChanged()">
+        <option value="Tonelada">Tonelada</option>
+        <option value="Litro">Litro</option>
+        <option value="Grama">Grama</option>
+        <option value="Miligrama">Miligrama</option>
+        <option value="Mililitro">Mililitro</option>
+        <option value="Quilograma">Quilograma</option>
+    </select></p>
+
+    <p><button onclick="calculate()">Converter</button></p>
+    <h2>Resultado:</h2>
+    <p id="result"></p>
+  </div>
+  <script>
+    function operationChanged() {
+        var operation = document.getElementById("operation").value;
+        var resultElement = document.getElementById("result");
+    
+        if (operation === "Tonelada") {
+        resultElement.innerHTML = "Unidade selecionada: Tonelada";
+        } else if (operation === "Litro") {
+        resultElement.innerHTML = "Unidade selecionada: Litro";
+        } else if (operation === "Quilograma") {
+        resultElement.innerHTML = "Unidade selecionada: Quilograma";
+        }
+    }
+    
+    function calculate() {
+        var operation = document.getElementById("operation").value;
+        var number1 = parseFloat(document.getElementById("unidade_c").value);
+        var resultElement = document.getElementById("result");
+    
+        if (operation === "Tonelada") {
+        var gton = number1*1000000;
+        resultElement.innerHTML = "Valor Necessário em gramas = " + gton + "g.";
+        } else if (operation === "Litro") {
+        var glitro = number1*1000;
+        resultElement.innerHTML = "Valor Necessário em gramas = " + glitro + "g.";
+        } else if (operation === "multiply") {
+        var gkg = number1*1000;
+        resultElement.innerHTML = "Valor Necessário em gramas = " + gkg + "g.";
+        }
+    }
+  </script>
+  
+</body>
+</html>
