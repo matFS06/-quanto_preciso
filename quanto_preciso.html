@@ -13,7 +13,8 @@
     }
     body {
         background-color: rgb(244, 170, 32);
-        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3TgtRtvfQqXuSNvI9jSltwXZ_ukWKbEzWrQ&usqp=CAU);
+        background-image: url(https://i.pinimg.com/474x/b3/02/7c/b3027c31c1941339c76f92ca50ff1ca3.jpg); 
+        
     }
     button {
         background-color: rgb(27, 27, 132);
@@ -24,6 +25,7 @@
     }
     #bloco {
         color: rgb(27, 27, 132);
+        border-radius: 20px;
     }
     #operation {
         width: 140px;
@@ -32,12 +34,35 @@
     #operation2 {
         width: 140px;
         height: 30px;
+        margin-right: 20px;
     }
     #result {
         color: rgb(18, 101, 18)
     }
     #result2 {
         color: rgb(18, 101, 18)
+    }
+    #scale-image {
+      width: 100px; 
+      margin-left: 10px; 
+    }
+    #label1 {
+        padding-left: 32px;
+        padding-right: 3px;
+    }
+    #label3 {
+        padding-left: 15px;
+    }
+    #label4 {
+        padding-left: 10px;
+    }
+    #quantidade_li {
+        width: 170px;
+        height: 30px;
+    }
+    #unidade_c {
+        width: 170px;
+        height: 30px;
     }
 
   </style>
@@ -46,13 +71,17 @@
 <body>
   <div div style="text-align:center; max-width: 800px; margin-left: 240px;" id="bloco2">
     <br>
-    <h1>Quanto Preciso?</h1>
+    <h1><span id="balance-emoji">⚖️</span>
+        Quanto Preciso?
+        <span id="balance-emoji">⚖️</span>
+    </h1>
+    </h1>
     <br>
   </div>
   <div style="background-color: whitesmoke; text-align:center; max-width: 800px; margin-left: 240px;" id="bloco">
     <br>
     <br>
-    <label for="unidade_c"><strong>Quantidade Licitada:</strong></label>
+    <label for="unidade_c" id="label1"><strong>Quantidade Licitada:</strong></label>
     <input type="number" id="quantidade_li"/>
     <label for="operation"><strong>Unidade de medida da licitação:</strong></label>
     <select id="operation" onchange="operationChanged()">
@@ -65,10 +94,10 @@
         <option value="Mililitro">Mililitro</option>
     </select>
     
-    <p></p><label for="unidade_c"><strong>Apresentação do Produto:</strong></label>
+    <p></p><label for="unidade_c" id ="label3"><strong>Apresentação do Produto:</strong></label>
         <input type="number" id="unidade_c"/>
 
-    <label for="operation"><strong>Unidade de medida disponível:</strong></label>
+    <label for="operation" id ="label4"><strong>Unidade de medida disponível:</strong></label>
         <select id="operation2" onchange="operationChanged()">
         <option value="Branco">--------</option>
         <option value="Tonelada">Tonelada</option>
