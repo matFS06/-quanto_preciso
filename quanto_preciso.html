@@ -81,6 +81,10 @@
   <div style="background-color: whitesmoke; text-align:center; max-width: 800px; margin-left: 240px;" id="bloco">
     <br>
     <br>
+    <label for="unidade_c" id="label01"><strong>Valor de Empenho (R$):</strong></label>
+    <input type="number" id="empenho"/>
+    <br>
+    <br>
     <label for="unidade_c" id="label1"><strong>Quantidade Licitada:</strong></label>
     <input type="number" id="quantidade_li"/>
     <label for="operation"><strong>Unidade de medida da licitação:</strong></label>
@@ -114,6 +118,9 @@
     <p id="result2"></p></strong>
     <br>
   </div>
+  <br><br>
+  <span class="d-block p-2 bg-success text-white"><strong>Unidades de Massa:</strong> Tonelada, Quilograma, Grama e Miligrama</span>
+  <span class="d-block p-2 bg-primary text-white"><strong>Unidades de Capacidade:</strong> Litro e Mililitro</span>
   <div style="margin-top: 50px; max-width: 1500px;">
     <div class="accordion" id="accordionExample">
         <div class="card">
@@ -141,11 +148,11 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-            <strong>PASSO 1: </strong>Digite o valor da quantidade licitada;<br><strong>PASSO 2:</strong> Selecione a unidade de medida da lecitaçã
-                (Tonelada, Quilograma, Grama, Miligrama, Litro e Mililitro);<br><strong>PASSO 3: </strong>Digite o valor da apresentação do produto, isto é, 
-                a quantidade que temos disponível na empresa em cada unidade;<br><strong>PASSO 4: </strong>Digite a unidade de medida que temos disponível;<br>
-                <strong>PASSO 5: </strong>Clique no botão Converter e será apresentado o total de produtos necessários para atender a quantidade licitada de acordo
-                com os valores que você forneceu anteriormente.<br><strong>OBSERVAÇÕES: <br>1 -</strong> Ponto e Vírgula só deverão ser utilizados para valores com casas decimais, ou seja, 
+            <strong>PASSO 1: </strong>Digite o valor do empenho;<br><strong>PASSO 2: </strong>Digite o valor da quantidade licitada;<br><strong>PASSO 3:</strong> Selecione a unidade de medida da lecitação
+                (Tonelada, Quilograma, Grama, Miligrama, Litro e Mililitro);<br><strong>PASSO 4: </strong>Digite o valor da apresentação do produto, isto é, 
+                a quantidade que temos disponível na empresa em cada unidade;<br><strong>PASSO 5: </strong>Digite a unidade de medida que temos disponível;<br>
+                <strong>PASSO 6: </strong>Clique no botão Converter e será apresentado o total de produtos necessários para atender a quantidade licitada de acordo
+                com os valores que você forneceu anteriormente e também será apresentado o valor por unidade do produto com base no valor de empenho fornecido.<br><strong>OBSERVAÇÕES: <br>1 -</strong> Ponto e Vírgula só deverão ser utilizados para valores com casas decimais, ou seja, 
                 ao digitar o valor MIL não deve ser colocados pontos nem vírgulas entre seus quatro algarismos, ficando: 1000;<br><strong>2 -</strong> Os resultados estão sendo apresentados com duas 
                 casas decimais.
 
@@ -198,10 +205,10 @@
         var operation2 = document.getElementById("operation2").value;
         var number1 = Number(document.getElementById("quantidade_li").value);
         var number2 = Number(document.getElementById("unidade_c").value);
+        var valor_empenho = Number(document.getElementById("empenho").value);
         var resultElement = document.getElementById("result");
         var resultElement2 = document.getElementById("result2");
-
-        if (number1 === 0 || number2 === 0) {
+        if (number1 === 0 || number2 === 0 || valor_empenho === 0) {
             alert("ATENÇÃO! Você deixou um ou mais campos vazios ou com valor 0 ou com caracteres inválidos. Exemplo: -");
             return;
         }
@@ -209,108 +216,128 @@
         if (operation === "Quilograma" && operation2 === "Grama") {
             var convertido = number1 * 1000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Tonelada" && operation2 === "Grama")  {
             var convertido = number1 * 1000000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Miligrama" && operation2 === "Grama")  {
             var convertido = number1 * 0.001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Grama" && operation2 === "Grama")  {
             var convertido = number1;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Quilograma" && operation2 === "Miligrama") {
             var convertido = number1 * 1000000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Tonelada" && operation2 === "Miligrama")  {
             var convertido = number1 * 1000000000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Miligrama" && operation2 === "Miligrama")  {
             var convertido = number1;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Grama" && operation2 === "Miligrama")  {
             var convertido = number1 * 1000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Quilograma" && operation2 === "Quilograma") {
             var convertido = number1;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Tonelada" && operation2 === "Quilograma")  {
             var convertido = number1 * 1000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Miligrama" && operation2 === "Quilograma")  {
             var convertido = number1 * 0.000001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Grama" && operation2 === "Quilograma")  {
             var convertido = number1 * 0.001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Quilograma" && operation2 === "Tonelada") {
             var convertido = number1 * 0.001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Tonelada" && operation2 === "Tonelada")  {
             var convertido = number1;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Miligrama" && operation2 === "Tonelada")  {
             var convertido = number1 * 0.000000001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Grama" && operation2 === "Tonelada")  {
             var convertido = number1 * 0.000001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Litro" && operation2 === "Mililitro")  {
             var convertido = number1 * 1000;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Mililitro" && operation2 === "Litro")  {
             var convertido = number1 * 0.001;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } 
         else if (operation === "Litro" && operation2 === "Litro")  {
             var convertido = number1;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Mililitro" && operation2 === "Mililitro")  {
             var convertido = number1;
             var resultado = convertido/number2;
+            var por_unidade = valor_empenho/resultado;
             resultElement.innerHTML = "Quantidade de produtos: " + resultado.toFixed(2);
-            resultElement2.innerHTML = "";
+            resultElement2.innerHTML = "Valor por unidade: R$" + por_unidade.toFixed(2);
         } else if (operation === "Branco" || operation2 === "Branco"){
             alert("ATENÇÃO! Você deixou de selecionar alguma unidade");
         } else {
-            alert("ATENÇÃO! Você selecionou uma unidade de massa e outra de capacidade");
+            alert("ATENÇÃO! Você selecionou uma unidade de massa e outra de capacidade. \nEm caso de dúvidas consulte o nosso guia abaixo.");
         }
     }
   </script>
