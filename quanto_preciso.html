@@ -7,9 +7,14 @@
   <script src="script.js"></script>
   <style>
     h1 {
-      color: rgb(27, 27, 132); 
-      text-align: center;
-      font-family: Georgia;
+        color: rgb(27, 27, 132); 
+        text-align: center;
+        font-family: Georgia;
+    }
+    #guia {
+        text-align: justify;
+        font-size: 30px;
+        margin-left: 10px;
     }
     body {
         background-color: rgb(244, 170, 32);
@@ -81,7 +86,7 @@
   <div style="background-color: whitesmoke; text-align:center; max-width: 800px; margin-left: 240px;" id="bloco">
     <br>
     <br>
-    <label for="unidade_c" id="label01"><strong>Valor de Empenho (R$):</strong></label>
+    <label for="unidade_c" id="label01"><strong>Valor Total do Item Empenhado (R$):</strong></label>
     <input type="number" id="empenho"/>
     <br>
     <br>
@@ -119,6 +124,7 @@
     <br>
   </div>
   <br><br>
+  <h1 id="guia">Guia de Unidades:</h1>
   <span class="d-block p-2 bg-success text-white"><strong>Unidades de Massa:</strong> Tonelada, Quilograma, Grama e Miligrama</span>
   <span class="d-block p-2 bg-primary text-white"><strong>Unidades de Capacidade:</strong> Litro e Mililitro</span>
   <div style="margin-top: 50px; max-width: 1500px;">
